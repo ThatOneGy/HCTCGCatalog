@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCG Card Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .card-list, .filter {
+            margin: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            max-width: 300px; /* Adjust width */
+        }
+        .card img {
+            max-width: 60px; /* Smaller image size */
+            margin-right: 10px;
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 1em; /* Smaller font size */
+        }
+        .card p {
+            margin: 2px 0;
+            font-size: 0.9em; /* Smaller font size */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hermitcraft TCG Card Catalog</h1>
+    </header>
+
+    <section class="filter">
+        <label for="deck-type-filter">Filter by Deck Type:</label>
+        <select id="deck-type-filter">
+            <option value="all">All</option>
+            <option value="deck1">Builder</option>
+            <option value="deck2">Balanced</option>
+            <option value="deck3">Deck 3</option>
+        </select>
+    </section>
+
+
+    <section class="card-list">
+        <div class="card" data-deck-type="deck1">
+            <img src="image.png" alt="Card Name 1">
+            <div>
+                <h2>Card Name 1</h2>
+                <p>Type: Monster</p>
+                <p>Rarity: Rare</p>
+                <p>Deck Type: Deck 1</p>
+            </div>
+        </div>
+        <div class="card" data-deck-type="deck2">
+            <img src="images/card2.jpg" alt="Card Name 2">
+            <div>
+                <h2>Card Name 2</h2>
+                <p>Type: Spell</p>
+                <p>Rarity: Common</p>
+                <p>Deck Type: Deck 2</p>
+            </div>
+        </div>
+        <div class="card" data-deck-type="deck3">
+            <img src="images/card3.jpg" alt="Card Name 3">
+            <div>
+                <h2>Card Name 3</h2>
+                <p>Type: Trap</p>
+                <p>Rarity: Ultra Rare</p>
+                <p>Deck Type: Deck 3</p>
+            </div>
+        </div>
+        <!-- Add more cards as needed -->
+    </section>
+
+    <script>
+        document.getElementById('deck-type-filter').addEventListener('change', function() {
+            var selectedType = this.value;
+            var cards = document.querySelectorAll('.card');
+
+            cards.forEach(function(card) {
+                if (selectedType === 'all' || card.getAttribute('data-deck-type') === selectedType) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
