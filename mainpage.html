@@ -50,6 +50,7 @@
         <h2>Disclaimer: HCTCG Gallery is not in any way shape or form affiliated with <a href="https://creocards.com">Creo Cards</a> or any artists featured on their website, this is just a fan made website</h2>
 
     </header>
+    <input type="text" id="card-search" placeholder="Search by name...">
 
     <section class="filter">
         <label for="deck-type-filter">Filter by Deck Type:</label>
@@ -539,20 +540,37 @@
 
 
     </section>
-
     <script>
-        document.getElementById('deck-type-filter').addEventListener('change', function() {
-            var selectedType = this.value;
+        document.addEventListener('DOMContentLoaded', function() {
+            var deckTypeFilter = document.getElementById('deck-type-filter');
+            var cardSearchInput = document.getElementById('card-search');
             var cards = document.querySelectorAll('.card');
-
-            cards.forEach(function(card) {
-                if (selectedType === 'all' || card.getAttribute('data-deck-type') === selectedType) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+    
+            // Filter function based on selected deck type and search input
+            function filterCards() {
+                var selectedType = deckTypeFilter.value.toLowerCase();
+                var searchTerm = cardSearchInput.value.trim().toLowerCase();
+    
+                cards.forEach(function(card) {
+                    var cardType = card.getAttribute('data-deck-type');
+                    var cardName = card.querySelector('h2').textContent.trim().toLowerCase();
+    
+                    var typeMatch = selectedType === 'all' || cardType === selectedType;
+                    var searchMatch = cardName.includes(searchTerm);
+    
+                    if (typeMatch && searchMatch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+    
+            // Event listeners
+            deckTypeFilter.addEventListener('change', filterCards);
+            cardSearchInput.addEventListener('input', filterCards);
         });
     </script>
+    
 </body>
 </html>
