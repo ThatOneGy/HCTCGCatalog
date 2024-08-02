@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Comparison</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            padding: 1px;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 500px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .custom-select {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .select-selected {
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .select-selected img {
+            max-width: 50px;
+            max-height: 50px;
+            margin-right: 10px;
+        }
+
+        .select-selected span {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .select-items {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .select-items input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .select-items div {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .select-items img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 10px;
+        }
+
+        .select-items div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select Two Comparison Files</h2>
+    <div class="custom-select" id="select1">
+        <div class="select-selected">
+            <img id="selectedImg1" src="XisumaCommonAE.png" alt="Selected Image 1">
+            <span>Select Image 1</span>
+        </div>
+        <div class="select-items">
+            <input type="text" id="search1" placeholder="Search...">
+
+            <div data-src="BdubsCommon.png"><img src="BdubsCommon.png" alt="BdubsCommon">Common Bdubs</div>
+            <div data-src="BdubsRare.png"><img src="BdubsRare.png" alt="BdubsRare">Rare Bdubs</div>
+            <div data-src="BdubsCommonAE.png"><img src="BdubsCommonAE.png" alt="BdubsCommonAE">Common Boomer Bdubs</div>
+            <div data-src="BdubsRareAE.png"><img src="BdubsRareAE.png" alt="BdubsRareAE">Rare Boomer Bdubs</div>
+            <div data-src="BeefCommon.png"><img src="BeefCommon.png" alt="BeefCommon">Common VintageBeef</div>
+            <div data-src="BeefCommonAE.png"><img src="BeefCommonAE.png" alt="BeefCommonAE">Common Llamadad</div>
+            <div data-src="BeefRareAE.png"><img src="BeefRareAE.png" alt="BeefRareAE">Rare Llamadad</div>
+            <div data-src="CleoCommon.png"><img src="CleoCommon.png" alt="CleoCommon">Common ZombieCleo</div>
+            <div data-src="CleoCommonAE.png"><img src="CleoCommonAE.png" alt="CleoCommonAE">Common HumanCleo</div>
+            <div data-src="CleoRare.png"><img src="CleoRare.png" alt="CleoRar">Rare ZombieCleo</div>
+            <div data-src="CleoRareAE.png"><img src="CleoRareAE.png" alt="CleoRareAE">Rare HumanCleo</div>
+            <div data-src="CubCommon.png"><img src="CubCommon.png" alt="CubCommon">Common cubfan135</div>
+            <div data-src="CubCommonAE.png"><img src="CubCommonAE.png" alt="CubCommonAE">Common Jingler</div>
+            <div data-src="CubRare.png"><img src="CubRare.png" alt="CubRare">Rare cubfan135</div>
+            <div data-src="CubRareAE.png"><img src="CubRareAE.png" alt="CubRareAE">Rare Jingler</div>
+            <div data-src="DocCommonAE.png"><img src="DocCommonAE.png" alt="DocCommonAE">Common Goatfather</div>
+            <div data-src="DocCommon.png"><img src="DocCommon.png" alt="DocCommon">Common Docm77</div>
+            <div data-src="DocRareAE.png"><img src="DocRareAE.png" alt="DocRareAE.png">Rare Goatfather</div>
+            <div data-src="DocRare.png"><img src="DocRare.png" alt="DocRare">Rare Docm77</div>
+            <div data-src="EthoCommon.png"><img src="EthoCommon.png" alt="EthoCommon">Common EthosLab</div>
+            <div data-src="EthoCommonAE.png"><img src="EthoCommonAE.png" alt="EthoCommonAE">Common EthosLab</div>
+            <div data-src="EthoRare.png"><img src="EthoRare.png" alt="EthoRare">Rare EthosLab</div>
+            <div data-src="EthoRareAE.png"><img src="EthoRareAE.png" alt="EthoRareAE">Rare EthosLab</div> 
+            <div data-src="FalseCommon.png"><img src="FalseCommon.png" alt="FalseCommon">Common FalseSymmetry</div>
+            <div data-src="FalseCommonAE.png"><img src="FalseCommonAE.png" alt="FalseCommonAE">Common FalseSymmetry</div>
+            <div data-src="FalseRare.png"><img src="FalseRare.png" alt="FalseRare">Rare FalseSymmetry</div>
+            <div data-src="FalseRareAE.png"><img src="FalseRareAE.png" alt="FalseRareAE">Rare FalseSymmetry</div>
+            <div data-src="GemCommon.png"><img src="GemCommon.png" alt="GemCommon">Common Gem</div>
+            <div data-src="GemCommonAE.png"><img src="GemCommonAE.png" alt="GemCommonAE">Common Princess Gem</div>
+            <div data-src="GemRare.png"><img src="GemRare.png" alt="GemRare">Rare Gem</div>
+            <div data-src="GemRareAE.png"><img src="GemRareAE.png" alt="GemRareAE">Rare Princess Gem</div>
+            <div data-src="GrianCommon.png"><img src="GrianCommon.png" alt="GrianCommon">Common Grian</div>
+            <div data-src="GrianCommonAE.png"><img src="GrianCommonAE.png" alt="GrianCommonAE">Common Poultry Man</div>
+            <div data-src="GrianRare.png"><img src="GrianRare.png" alt="GrianRare">Rare Grian</div>
+            <div data-src="GrianRareAE.png"><img src="GrianRareAE.png" alt="GrianRareAE">Rare Poultry Man</div>
+            <div data-src="HypnoCommon.png"><img src="HypnoCommon.png" alt="HypnoCommon">Common Hypno</div>
+            <div data-src="HypnoCommonAE.png"><img src="HypnoCommonAE.png" alt="HypnoCommonAE">Common Hypno</div>
+            <div data-src="HypnoRareAE.png"><img src="HypnoRareAE.png" alt="HypnoRareAE">Common Hypno</div>
+            <div data-src="ImpulseCommon.png"><img src="ImpulseCommon.png" alt="ImpulseCommon">Common Impulse</div>
+            <div data-src="ImpulseCommonAE.png"><img src="ImpulseCommonAE.png" alt="ImpulseCommonAE">Common Impulse</div>
+            <div data-src="ImpulseRareAE.png"><img src="ImpulseRareAE.png" alt="ImpulseRareAE">Common Impulse</div>
+            <div data-src="IskallCommon.png"><img src="IskallCommon.png" alt="IskallCommon">Common Iskall</div>
+            <div data-src="IskallCommonAE.png"><img src="IskallCommonAE.png" alt="IskallCommonAE">Common Iskall</div>
+            <div data-src="IskallRareAE.png"><img src="IskallRareAE.png" alt="IskallRareAE">Common Iskall</div>
+            <div data-src="JevinCommon.png"><img src="JevinCommon.png" alt="JevinCommon">Common iJevin</div>
+            <div data-src="JevinCommonAE.png"><img src="JevinCommonAE.png" alt="JevinCommonAE">Common Evil Jevin</div>
+            <div data-src="JevinRareAE.png"><img src="JevinRareAE.png" alt="JevinRareAE">Rare Evil Jevin</div>
+            <div data-src="JevinRare.png"><img src="JevinRare.png" alt="JevinRare">Rare iJevin</div>
+            <div data-src="JoeCommon.png"><img src="JoeCommon.png" alt="JoeCommon">Common JoeHills</div>
+            <div data-src="JoeCommonAE.png"><img src="JoeCommonAE.png" alt="JoeCommonAE">Common Beetlejhost</div>
+            <div data-src="JoeRareAE.png"><img src="JoeRareAE.png" alt="JoeRareAE">Rare Beetlejhost</div>
+            <div data-src="JoeRare.png"><img src="JoeRare.png" alt="JoeRare">Rare JoeHills</div>
+            <div data-src="JoelCommon"> <img src="JoelCommon.png" alt="JoelCommon">Common Smallishbeans</div>
+            <div data-src="JoelCommonAE.png"><img src="JoelCommonAE.png" alt="JoelCommonAE">Common King Joel</div>
+            <div data-src="JoelRareAE.png"><img src="JoelRareAE.png" alt="JoelRareAE">Rare King Joel</div>
+            <div data-src="JoeRare.png"><img src="JoelRare.png" alt="JoeRare">Rare Smallishbeans</div>
+            <div data-src="KeralisCommon.png"><img src="KeralisCommon.png" alt="KeralisCommon">Common Keralis</div>
+            <div data-src="KeralisCommonAE.png"><img src="KeralisCommonAE.png" alt="KeralisCommonAE">Common Frenchralis</div>
+            <div data-src="KeralisRareAE.png"><img src="KeralisRareAE.png" alt="KeralisRareAE">Rare Frenchralis</div>
+            <div data-src="MumboCommon.png"><img src="MumboCommon.png" alt="MumboCommon">Common Mumbo</div>
+            <div data-src="MumboCommonAE.png"><img src="MumboCommonAE.png" alt="MumboCommonAE">Common Potato Boy</div>
+            <div data-src="MumboRare.png"><img src="MumboRare.png" alt="MumboRare">Rare MumboJumbo</div>
+            <div data-src="PearlCommonAE.png"><img src="PearlCommonAE.png" alt="PearlCommonAE">Common 5AM PEarl</div>
+            <div data-src="PearlRareAE.png"><img src="PearlRareAE.png" alt="PearlRareAE">Rare 5AM Pearl</div>
+            <div data-src="PearlRare.png"><img src="PearlRare.png" alt="PearlRare">Rare Pearl</div>
+            <div data-src="RenCommon.png"><img src="RenCommon.png" alt="RenCommon">Common Ren</div>
+            <div data-src="RenCommonAE.png"><img src="RenCommonAE.png" alt="RenCommonAE">Common Renbob</div>
+            <div data-src="RenRareAE.png"><img src="RenRareAE.png" alt="RenRareAE">Rare Renbob</div>
+            <div data-src="ScarCommon.png"><img src="ScarCommon.png" alt="ScarCommon">Common Scar</div>
+            <div data-src="ScarCommonAE.png"><img src="ScarCommonAE.png" alt="ScarCommonAE">Common Hot Guy</div>
+            <div data-src="ScarRareAE.png"><img src="ScarRareAE.png" alt="ScarRareAE">Rare Hot Guy</div>
+            <div data-src="SkizzCommon.png"><img src="SkizzCommon.png" alt="SkizzCommon">Common Skizz</div>
+            <div data-src="SkizzCommonAE.png"><img src="SkizzCommonAE.png" alt="SkizzCommonAE">Common POE POE Skizz</div>
+            <div data-src="StressCommon.png"><img src="StressCommon.png" alt="StressCommon">Common Stress</div>
+            <div data-src="StressCommonAE.png"><img src="StressCommonAE.png" alt="StressCommonAE">Common Spooky Stress</div>
+            <div data-src="StressRareAE.png"><img src="StressRareAE.png" alt="StressRareAE">Rare Spooky Stress</div>
+            <div data-src="TangoCommonAE.png"><img src="TangoCommonAE.png" alt="TangoCommonAE">Common Steampunk Tango</div>
+            <div data-src="TangoRare.png"><img src="TangoRare.png" alt="TangoRare">Rare TangoTek</div>
+            <div data-src="TFCCommon.png"><img src="TFCCommon.png" alt="TFCCommon">Common TFC</div>
+            <div data-src="TFCCommonAE.png"><img src="TFCCommonAE.png" alt="TFCCommonAE">Common Overseer</div>
+            <div data-src="TFCRare.png"><img src="TFCRare.png" alt="TFCRare">Rare Overseer</div>
+            <div data-src="WelsCommonAE.png"><img src="WelsCommonAE.png" alt="WelsCommonAE">Common Helsknight</div>
+            <div data-src="WelsRareAE.png"><img src="WelsRareAE.png" alt="WelsRareAE">Rare Helsknight</div>
+            <div data-src="XBCommon.png"><img src="XBCommon.png" alt="XBCommon">Common XB</div>
+            <div data-src="XBCommonAE.png"><img src="XBCommonAE.png" alt="XBCommonAE">Common Original XB</div>
+            <div data-src="XisumaCommon.png"><img src="XisumaCommon.png" alt="XisumaCommon">Common Xisuma</div>
+            <div data-src="XisumaCommonAE.png"><img src="XisumaCommonAE.png" alt="XisumaCommonAE">Common Evil X</div>
+            <div data-src="ZedaphCommon.png"><img src="ZedaphCommon.png" alt="ZedaphCommon">Common Zedaph</div>
+            <div data-src="ZedaphCommonAE.png"><img src="ZedaphCommonAE.png" alt="ZedaphCommonAE">Common Worm Man</div>
+            <div data-src="ZedaphRareAE.png"><img src="ZedaphRareAE.png" alt="ZedaphRareAE">Rare Worm Man</div>
+    </div>
+
+    <div class="custom-select" id="select2">
+        <div class="select-selected">
+            <img id="selectedImg2" src="GrianCommon.png" alt="Selected Image 2">
+            <span>Select Image 2</span>
+        </div>
+        <div class="select-items">/div>
+    </div>
+
+    <div class="container">
+        <div class="image-container">
+            <h3>Image 1</h3>
+            <img id="image1" src="XisumaCommonAE.png" alt="Image 1">
+        </div>
+        <div class="image-container">
+            <h3>Image 2</h3>
+            <img id="image2" src="GrianCommon.png" alt="Image 2">
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.custom-select').forEach(select => {
+            const selected = select.querySelector('.select-selected');
+            const items = select.querySelector('.select-items');
+            const searchInput = select.querySelector('input[type="text"]');
+            const selectedImg = select.querySelector('img');
+
+            selected.addEventListener('click', () => {
+                items.style.display = items.style.display === 'block' ? 'none' : 'block';
+            });
+
+            items.addEventListener('click', (e) => {
+                if (e.target.tagName === 'DIV') {
+                    selectedImg.src = e.target.dataset.src;
+                    selectedImg.alt = e.target.querySelector('img').alt;
+                    selected.querySelector('span').textContent = e.target.textContent;
+                    document.querySelector('#image' + (select.id === 'select1' ? '1' : '2')).src = e.target.dataset.src;
+                    items.style.display = 'none';
+                }
+            });
+
+            searchInput.addEventListener('keyup', () => {
+                const filter = searchInput.value.toUpperCase();
+                const divs = items.querySelectorAll('div');
+                divs.forEach(div => {
+                    const text = div.textContent || div.innerText;
+                    div.style.display = text.toUpperCase().indexOf(filter) > -1 ? '' : 'none';
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!select.contains(e.target)) {
+                    items.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
