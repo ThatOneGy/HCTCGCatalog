@@ -10,23 +10,11 @@
             padding: 1px;
         }
 
+
         .container {
-            display: 20px;
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-around; /* Adjust spacing as needed */
             margin-top: 20px;
-            justify-content: space-between;
-        }
-
-        .image-container {
-            flex: auto;
-            text-align: center;
-        }
-
-        .image-container img {
-            max-width: 200%;
-            max-height: 400px;
-            display: block;
-            margin: auto;
-            
         }
 
         .custom-select {
@@ -56,18 +44,18 @@
         }
 
         .select-selected span {
-            flex-grow: 1;
-            text-align: left;
+            flex-grow:1;
+            text-align: center;
         }
 
         .select-items {
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 100%;
+            min-width: 200%;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
-            max-height: 200px;
+            max-height: 500px;
             overflow-y: auto;
         }
 
@@ -234,7 +222,7 @@
             <div data-src="BeefCommon.png"><img src="BeefCommon.png" alt="BeefCommon">Common VintageBeef</div>
             <div data-src="BeefRare.png"><img src="BeefRare.png" alt="BeefRare">Rare VintageBeef</div>
             <div data-src="BeefCommonAE.png"><img src="BeefCommonAE.png" alt="BeefCommonAE">Common Llamadad</div>
-           <div data-src="BeefRareAE.png"><img src="BeefRareAE.png" alt="BeefRareAE">Rare Llamadad</div>
+            <div data-src="BeefRareAE.png"><img src="BeefRareAE.png" alt="BeefRareAE">Rare Llamadad</div>
             <div data-src="CleoCommon.png"><img src="CleoCommon.png" alt="CleoCommon">Common ZombieCleo</div>
             <div data-src="CleoRare.png"><img src="CleoRare.png" alt="CleoRare">Rare ZombieCleo</div>
             <div data-src="CleoCommonAE.png"><img src="CleoCommonAE.png" alt="CleoCommonAE">Common HumanCleo</div>
